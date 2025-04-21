@@ -59,8 +59,7 @@ func main() {
 					}
 					if selected > 0 && selected <= len(listaDispositios) {
 						selected-- // Se reduce en 1 para que coincida con el indice de la lista
-						fmt.Println("Nombre: " + listaDispositios[selected].Nombre)
-						fmt.Println("Estado: " + listaDispositios[selected].EstadoActual())
+						fmt.Println("Seleccionado: " + listaDispositios[selected].Nombre)
 						fmt.Println("¿Qué desea hacer?")
 						fmt.Printf("1) Encender\n2) Apagar\n")
 						var accion int
@@ -112,6 +111,12 @@ func mostrarDispositivos(lista []IoT.Dispositivo) {
 	if len(lista) != 0 {
 		for i, dis := range lista {
 			color.Cyan("%d: %s\n", i+1, dis.Nombre) // i se aumenta en 1 para que el conteo no comience desde 0
+			fmt.Printf("  Estado: ")
+			if dis.EstadoActual() == "Encendido" {
+				color.Green("Encendido\n")
+			} else {
+				color.Blue("Apagado")
+			}
 		}
 	}
 }
